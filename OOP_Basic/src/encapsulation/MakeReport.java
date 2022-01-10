@@ -1,7 +1,6 @@
 package encapsulation;
 
 public class MakeReport {
-
     StringBuffer buffer = new StringBuffer();
 
     private String line = "===========================================\n";
