@@ -14,28 +14,31 @@ package inheritance;
 // 하위 클래스는 상위 클래스의 타입을 내포하고 있으므로 상위 클래스로의 묵시적 형 변환이 가능함
 // EX -> Customer customerLee = new VIPCustomer();
 // 변수의 타입이 Customer이므로 실제 접근 가능한 변수나 메서드는 Customer의 변수와 메서드이다.
+
+// 오버라이딩(overriding)
+// 상위 클래스에 정의된 메서드의 구현 내용이 하위 클래스에서 구현할 내용과 다른 경우
+// 하위 클래스에서 동일한 이름의 메서드를 재정의할 수 있음
 public class CustomerTest {
     public static void main(String[] args) {
-        Customer customerS1 = new Customer();
-        customerS1.setCustomerName("신현수1");
-        customerS1.setCustomerID(10010);
-        customerS1.bonusPoint = 1000;
-        System.out.println(customerS1.showCustomerInfo());
-        System.out.println();
-
-        VIPCustomer customerS2 = new VIPCustomer();
-        customerS2.setCustomerName("신현수2");
-        customerS2.setCustomerID(10020);
-        customerS2.bonusPoint = 5000;
-        System.out.println(customerS2.showCustomerInfo());
+        Customer customerS = new Customer();
+        customerS.setCustomerName("신현수1");
+        customerS.setCustomerID(10010);
+        customerS.bonusPoint = 1000;
+        int priceS = customerS.calcPrice(1000);
+        System.out.println(customerS.showCustomerInfo() + " 지불금액은 " + priceS + "원 입니다.");
         System.out.println();
 
         VIPCustomer customerK = new VIPCustomer(10030, "김진호");
         customerK.bonusPoint = 10000;
-        System.out.println(customerK.showCustomerInfo());
+        int priceK = customerK.calcPrice(10000);
+        System.out.println(customerK.showCustomerInfo() + " 지불금액은 " + priceK + "원 입니다.");
         System.out.println();
 
-
+//      형 변환과 오버라이딩 메서드 호출
+//      자바에서는 항상 인스턴스의 메서드가 호출된다(가상메서드의 원리)
         Customer vc = new VIPCustomer();
+        vc.bonusPoint = 10000;
+        int priceVC = vc.calcPrice(10000);
+        System.out.println(vc.showCustomerInfo() + " 지불금액은 " + priceVC + "원 입니다.");
     }
 }
