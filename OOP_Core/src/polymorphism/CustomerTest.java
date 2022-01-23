@@ -32,5 +32,15 @@ public class CustomerTest {
             System.out.println(customer.getCustomerName() +" 님이 " +  + cost + "원 지불하셨습니다.");
             System.out.println(customer.getCustomerName() +" 님의 현재 보너스 포인트는 " + customer.bonusPoint + "점입니다.");
         }
+
+//      다운 캐스팅(downcasting)
+//        Customer vc = new VIPCustomer();              //묵시적
+//        VIPCustomer vCustomer = (VIPCustomer)vc;      //명시적
+
+        if (customerHong instanceof GoldCustomer) {
+            GoldCustomer vc = (GoldCustomer) customerHong;
+            System.out.println(customerHong.showCustomerInfo());
+        }
     }
 }
+

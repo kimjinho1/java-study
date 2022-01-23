@@ -4,6 +4,8 @@ public class VIPCustomer extends Customer{
     private int agentID;
     public double salesRatio;
 
+    public VIPCustomer() {}
+
     public VIPCustomer(int customerID, String customerName, int agentID) {
         super(customerID, customerName);
 
