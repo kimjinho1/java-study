@@ -1,4 +1,4 @@
-package array.ex;
+package myarray.ex;
 
 public class myArrayTest {
     public static void main(String[] args) {

@@ -2,54 +2,107 @@ package arraylist.review;
 
 import java.util.ListIterator;
 
-public class MyArrayList implements MyArrayListInterface {
+public class MyArrayList {
 
     private int size = 0;
     private Object[] elementData = new Object[100];
 
-
     @Override
+    public String toString() {
+        String str = "[";
+        for (int i = 0; i < size; i++) {
+            str += elementData[i];
+            if (i < (size - 1))
+                str += ", ";
+        }
+        return str + "]";
+    }
+
     public boolean addLast(Object element) {
-        return false;
+        elementData[size++] = element;
+        return true;
     }
 
-    @Override
     public boolean add(int index, Object element) {
-        return false;
+        for (int i = size-1; i >= index; i--) {
+            elementData[i+1] = elementData[i];
+        }
+        elementData[index] = element;
+        size++;
+
+        return true;
     }
 
-    @Override
     public boolean addFirst(Object element) {
-        return false;
+        return add(0, element);
     }
 
-    @Override
     public Object remove(int index) {
-        return null;
+        Object removed = elementData[index];
+        for (int i = index+1; i < size; i++) {
+            elementData[i-1] = elementData[i];
+        }
+        size--;
+        elementData[size] = null;
+
+        return removed;
     }
 
-    @Override
     public Object removeFirst() {
-        return null;
+        return remove(0);
     }
 
-    @Override
     public Object removeLast() {
-        return null;
+        return remove(size-1);
     }
 
-    @Override
     public Object get(int index) {
-        return null;
+        return elementData[index];
     }
 
-    @Override
     public int size() {
-        return 0;
+        return size;
     }
 
-    @Override
     public int indexOf(Object element) {
-        return 0;
+        for (int i = 0; i < size; i++) {
+            if (element.equals(elementData[i])) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public ListIterator listIterator() {
+        return new ListIterator();
+    }
+
+    class ListIterator {
+        private int nextIndex = 0;
+
+        public boolean hasNext() {
+            return nextIndex < size();
+        }
+
+        public Object next() {
+            System.out.println(nextIndex);
+            return elementData[nextIndex++];
+        }
+
+        public boolean hasPrevious() {
+            return nextIndex > 0;
+        }
+
+        public Object previous() {
+            return elementData[--nextIndex];
+        }
+
+        public void add(Object element) {
+            MyArrayList.this.add(nextIndex++, element);
+        }
+
+        public void remove() {
+            MyArrayList.this.remove(--nextIndex);
+        }
     }
 }
