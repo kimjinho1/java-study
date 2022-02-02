@@ -1,4 +1,4 @@
-package myarray.ex;
+package myarray;
 
 public class MyArray {
 

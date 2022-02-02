@@ -1,7 +1,5 @@
 package mylinkedlist;
 
-import arraylist.review.MyArrayList;
-
 public class MyLinkedList {
 
     private MyListNode head;
